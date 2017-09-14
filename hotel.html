@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="./angular.min.js"></script>
+<script src="./app.js"></script>
+</head>
+
+
+
+<body ng-app="myapp">
+<div data-ng-controller="mycontroller">
+        <table id="hotels">
+            <tr>
+                <th>Hotel Name</th>
+                <th>Star Rating</th>
+                <th>Hotel type</th>
+                <th>Hotel Price</th>
+            </tr>
+            <tr data-ng-repeat="hotel in hotels | myfilter:types">
+                <td>{{hotel.name}}</td>
+                <td>{{hotel.star}}</td>
+                <td>{{hotel.type}}</td>
+                <td>{{hotel.price}}</td>
+            </tr>
+        </table>
+        <br/>
+        <h4>Filters</h4>
+<input type="checkbox" data-ng-model='types.luxury'  /> Luxury &nbsp;&nbsp;&nbsp;
+        <input type="checkbox" data-ng-model='types.double_suite'  /> Double suite&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" data-ng-model='types.five'/>5 &nbsp;&nbsp;&nbsp;
+		<input type="checkbox" data-ng-model='types.four'/>4 &nbsp;&nbsp;&nbsp;
+		<input type="checkbox" data-ng-model='types.three'/>3 &nbsp;&nbsp;&nbsp;
+		
+        <!--pre>{{types|json}}</pre-->
+		</div>
+	</body>
+	</html>

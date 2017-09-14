@@ -1,0 +1,38 @@
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.0.x" src="http://code.angularjs.org/1.0.7/angular.min.js" data-semver="1.0.7"></script>
+    <script src="select.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    
+    Filter:
+    <select ng-model="filterItem.store" ng-options="item.name for item in filterOptions.stores">
+    </select>
+    
+    Sort:
+    <select ng-model="sortItem.store" ng-options="item.name for item in sortOptions.stores">
+    </select>
+    <p>
+      <strong>Selected Filter dropdown item: </strong> {{filterItem.store.name}}
+    </p>
+
+    <p>
+      <strong>Selected Sort dropdown item: </strong> {{sortItem.store.name}}
+    </p>
+
+    <ul>
+    <!-- We are getting the data first, filtering the data and then sorting the data based
+    on the select options -->
+      <li data-ng-repeat="item in data | orderBy:'price':reverse | filter:customFilter" >
+        Name: {{item.name}} Price: {{item.price}} Rating: {{item.rating}}
+      </li>
+    </ul>
+    
+  </body>
+
+</html>

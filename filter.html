@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<script src="./angular.min.js"></script>
+<script src="./script.js"></script>
+</head>
+
+<body ng-app="mymodule">
+    <div ng-controller="mycontroller">
+        Search:<input type="text" placeholder="Search employees" ng-model="searchText"/>
+		<br/>
+        <br/>
+        Select Location:<select ng-model="selected_city" ng-options=" person.city for person in employees|unique:'city'"></select>
+		<br/>
+		<br/>
+		<br/>
+		<input type="text" ng-model="country" name="country" id="country" ng-keyup="complete(country)" />
+		<ul ng-model="hidethis" ng-hide="hidethis">
+		<li ng-repeat="countrydata in filtercountry" ng-click="filltextbox(countrydata)">
+		{{countrydata}}
+		</li>
+		</ul>
+		<table>
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees|filter:selected_city"> 
+                    <td> {{employee.name}}</td>
+                    <td> {{employee.gender}}</td>
+                    <td> {{employee.salary}}</td>
+                    <td> {{employee.city}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

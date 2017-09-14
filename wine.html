@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="./angular.min.js"></script>
+<script src="./wine.js"></script>
+ <link href="./wine.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp">
+<div ng-controller="WineCtrl as ctrl">
+  <div ng-repeat="(prop, ignored) in ctrl.wines[0]" ng-init="ctrl.filter[prop] = {}">
+    <h3>{{ prop | capitalizeFirst }}</h3>
+    <div class="quarter" ng-repeat="value in ctrl.getValuesFor(prop)">
+      <label>
+        <input type="checkbox" ng-model="ctrl.filter[prop][value]" />
+        {{ value }}
+      </label>
+    </div>
+    <hr />
+  </div>
+  <div>
+    <h3>Available Wines</h3>
+    <div ng-repeat="wine in (ctrl.wines | filter:ctrl.filterByProperties) as filteredWines">
+      {{ wine.name }} <i>({{ wine.category }})</i><i>({{wine.location}})</i>
+    </div>
+    <hr />
+    <b>Number of results: {{ filteredWines.length }}</b>
+  </div>
+</div>
+</body>
+</html>
